@@ -1,0 +1,63 @@
+\beamer@endinputifotherversion {3.07pt}
+\headcommand {\slideentry {0}{0}{1}{1/1}{}{0}}
+\headcommand {\beamer@framepages {1}{1}}
+\headcommand {\slideentry {0}{0}{2}{2/2}{}{0}}
+\headcommand {\beamer@framepages {2}{2}}
+\headcommand {\sectionentry {1}{Back ground introduction}{3}{Back ground introduction}{0}}
+\headcommand {\beamer@sectionpages {1}{2}}
+\headcommand {\beamer@subsectionpages {1}{2}}
+\headcommand {\slideentry {1}{0}{3}{3/3}{}{0}}
+\headcommand {\beamer@framepages {3}{3}}
+\headcommand {\slideentry {1}{0}{4}{4/4}{}{0}}
+\headcommand {\beamer@framepages {4}{4}}
+\headcommand {\sectionentry {2}{Packing problems}{5}{Packing problems}{0}}
+\headcommand {\beamer@sectionpages {3}{4}}
+\headcommand {\beamer@subsectionpages {3}{4}}
+\headcommand {\beamer@subsectionentry {0}{2}{1}{5}{One-dimensional algorithms}}\headcommand {\beamer@subsectionpages {5}{4}}
+\headcommand {\slideentry {2}{1}{1}{5/5}{One-dimensional algorithms}{0}}
+\headcommand {\beamer@framepages {5}{5}}
+\headcommand {\beamer@subsectionentry {0}{2}{2}{6}{Other packing problems}}\headcommand {\beamer@subsectionpages {5}{5}}
+\headcommand {\slideentry {2}{2}{1}{6/6}{Other packing problems}{0}}
+\headcommand {\beamer@framepages {6}{6}}
+\headcommand {\slideentry {2}{2}{2}{7/7}{Other packing problems}{0}}
+\headcommand {\beamer@framepages {7}{7}}
+\headcommand {\slideentry {2}{2}{3}{8/8}{Other packing problems}{0}}
+\headcommand {\beamer@framepages {8}{8}}
+\headcommand {\slideentry {2}{2}{4}{9/9}{Other packing problems}{0}}
+\headcommand {\beamer@framepages {9}{9}}
+\headcommand {\sectionentry {3}{Implementation}{10}{Implementation}{0}}
+\headcommand {\beamer@sectionpages {5}{9}}
+\headcommand {\beamer@subsectionpages {6}{9}}
+\headcommand {\beamer@subsectionentry {0}{3}{1}{10}{Main idea}}\headcommand {\beamer@subsectionpages {10}{9}}
+\headcommand {\slideentry {3}{1}{1}{10/10}{Main idea}{0}}
+\headcommand {\beamer@framepages {10}{10}}
+\headcommand {\beamer@subsectionentry {0}{3}{2}{11}{Test of different input size}}\headcommand {\beamer@subsectionpages {10}{10}}
+\headcommand {\slideentry {3}{2}{1}{11/11}{Test of different input size}{0}}
+\headcommand {\beamer@framepages {11}{11}}
+\headcommand {\slideentry {3}{2}{2}{12/12}{Test of different input size}{0}}
+\headcommand {\beamer@framepages {12}{12}}
+\headcommand {\beamer@subsectionentry {0}{3}{3}{13}{Test of different ordered input}}\headcommand {\beamer@subsectionpages {11}{12}}
+\headcommand {\slideentry {3}{3}{1}{13/13}{Test of different ordered input}{0}}
+\headcommand {\beamer@framepages {13}{13}}
+\headcommand {\sectionentry {4}{Cutting stock problem}{14}{Cutting stock problem}{0}}
+\headcommand {\beamer@sectionpages {10}{13}}
+\headcommand {\beamer@subsectionpages {13}{13}}
+\headcommand {\beamer@subsectionentry {0}{4}{1}{14}{First Fit}}\headcommand {\beamer@subsectionpages {14}{13}}
+\headcommand {\slideentry {4}{1}{1}{14/14}{First Fit}{0}}
+\headcommand {\beamer@framepages {14}{14}}
+\headcommand {\beamer@subsectionentry {0}{4}{2}{15}{Best Fit}}\headcommand {\beamer@subsectionpages {14}{14}}
+\headcommand {\slideentry {4}{2}{1}{15/15}{Best Fit}{0}}
+\headcommand {\beamer@framepages {15}{15}}
+\headcommand {\beamer@subsectionentry {0}{4}{3}{16}{Worst Fit}}\headcommand {\beamer@subsectionpages {15}{15}}
+\headcommand {\slideentry {4}{3}{1}{16/16}{Worst Fit}{0}}
+\headcommand {\beamer@framepages {16}{16}}
+\headcommand {\sectionentry {5}{something more}{17}{something more}{0}}
+\headcommand {\beamer@sectionpages {14}{16}}
+\headcommand {\beamer@subsectionpages {16}{16}}
+\headcommand {\slideentry {5}{0}{2}{17/17}{}{0}}
+\headcommand {\beamer@framepages {17}{17}}
+\headcommand {\beamer@partpages {1}{17}}
+\headcommand {\beamer@subsectionpages {1}{17}}
+\headcommand {\beamer@sectionpages {1}{17}}
+\headcommand {\beamer@documentpages {17}}
+\headcommand {\def \inserttotalframenumber {17}}

@@ -1,0 +1,14 @@
+\beamer@endinputifotherversion {3.07pt}
+\beamer@sectionintoc {1}{Back ground introduction}{3}{0}{1}
+\beamer@sectionintoc {2}{Packing problems}{5}{0}{2}
+\beamer@subsectionintoc {2}{1}{One-dimensional algorithms}{5}{0}{2}
+\beamer@subsectionintoc {2}{2}{Other packing problems}{6}{0}{2}
+\beamer@sectionintoc {3}{Implementation}{10}{0}{3}
+\beamer@subsectionintoc {3}{1}{Main idea}{10}{0}{3}
+\beamer@subsectionintoc {3}{2}{Test of different input size}{11}{0}{3}
+\beamer@subsectionintoc {3}{3}{Test of different ordered input}{13}{0}{3}
+\beamer@sectionintoc {4}{Cutting stock problem}{14}{0}{4}
+\beamer@subsectionintoc {4}{1}{First Fit}{14}{0}{4}
+\beamer@subsectionintoc {4}{2}{Best Fit}{15}{0}{4}
+\beamer@subsectionintoc {4}{3}{Worst Fit}{16}{0}{4}
+\beamer@sectionintoc {5}{something more}{17}{0}{5}
