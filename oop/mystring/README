@@ -1,0 +1,15 @@
+开发环境：
+$uname -a:
+Linux Dell-Inspiron-N4010 3.0.0-16-generic #28-Ubuntu SMP Fri Jan 27 17:44:39 UTC 2012 x86_64 x86_64 x86_64 GNU/Linux
+
+$gcc -v:
+使用内建 specs。
+COLLECT_GCC=g++
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/4.6.1/lto-wrapper
+目标：x86_64-linux-gnu
+配置为：../src/configure -v --with-pkgversion='Ubuntu/Linaro 4.6.1-9ubuntu3' --with-bugurl=file:///usr/share/doc/gcc-4.6/README.Bugs --enable-languages=c,c++,fortran,objc,obj-c++,go --prefix=/usr --program-suffix=-4.6 --enable-shared --enable-linker-build-id --with-system-zlib --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --with-gxx-include-dir=/usr/include/c++/4.6 --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-plugin --enable-objc-gc --disable-werror --with-arch-32=i686 --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+线程模型：posix
+gcc 版本 4.6.1 (Ubuntu/Linaro 4.6.1-9ubuntu3) 
+
+请在当前目录通过make命令来编译生成可执行文件string，同时在该目录下会得到letters.txt文件用于测试
+可通过make clean命令来清除make命令生成的文件。

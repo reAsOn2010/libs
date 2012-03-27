@@ -1,0 +1,28 @@
+add $s0 $s0 $s1
+srl $t1 $t2 10
+addu $t1 $s2 $s3
+sub $s0 $s0 $s1
+subu $t1 $s2 $s3
+sll $t1 $t2 9
+and $t2 $s4 $s5
+nor $t3 $6 $7
+or $t4 $t5 $t6
+xor $t7 $s3 $s4
+sra $t1 $t2 11
+
+addi $s0 $s1 
+addiu $s1 $s0
+beq $s2 $s3 20
+bne $s4 $s5 25
+ori $t1 $t2 100
+xori $t2 $t1 -52
+sw $s1 -10($t2)
+
+
+blt $s1 $s2 15
+bgt $t1 $t2 20
+ble $t1 $t2 25
+bge $s1 $s2 -30
+
+j 12345
+jal -12345

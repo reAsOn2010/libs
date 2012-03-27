@@ -1,0 +1,32 @@
+开发环境：
+$uname -a:
+Linux Dell-Inspiron-N4010 3.0.0-16-generic #28-Ubuntu SMP Fri Jan 27 17:44:39 UTC 2012 x86_64 x86_64 x86_64 GNU/Linux
+
+$gcc -v:
+使用内建 specs。
+COLLECT_GCC=g++
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/4.6.1/lto-wrapper
+目标：x86_64-linux-gnu
+配置为：../src/configure -v --with-pkgversion='Ubuntu/Linaro 4.6.1-9ubuntu3' --with-bugurl=file:///usr/share/doc/gcc-4.6/README.Bugs --enable-languages=c,c++,fortran,objc,obj-c++,go --prefix=/usr --program-suffix=-4.6 --enable-shared --enable-linker-build-id --with-system-zlib --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --with-gxx-include-dir=/usr/include/c++/4.6 --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-plugin --enable-objc-gc --disable-werror --with-arch-32=i686 --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+线程模型：posix
+gcc 版本 4.6.1 (Ubuntu/Linaro 4.6.1-9ubuntu3) 
+
+请在当前目录通过make命令来编译生成可执行文件main，当中包含了一个很简单的测试
+可通过make clean命令来清除make命令生成的文件。
+
+一些特殊处理：
+当pop一个空堆栈时，程序将会exit(-1)而退出，不进行接下去的操作
+
+关于两种堆栈的运行速度的比较：
+			array			link
+push		快				快
+pop			快				快
+解释：由于link的实现当中保留了tail节点的指针，所以link实现的push也将会是常数时间
+因为均为常数时间的操作,所以速度都将会较快
+
+关于两种线性表的运行速度的比较:
+			array					link
+get			快						与i相关，i越小越快(tail例外)
+insert		与i相关，i越小越慢		与i相关，i越小越快(tail例外)
+remove		与i相关，i越小越慢		与i相关，i越小越快(tail例外)
+

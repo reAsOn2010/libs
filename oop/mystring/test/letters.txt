@@ -1,0 +1,16 @@
+apple
+banana
+top
+bad_apple
+bottom
+leftist
+heap
+red-apple
+stack
+overflow
+tasty_green_apple
+terminal
+eof
+vector
+an_apple_pie
+algorithm
