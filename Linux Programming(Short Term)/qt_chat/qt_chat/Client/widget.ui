@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Widget</class>
+ <widget class="QWidget" name="Widget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>460</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Widget</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>0</y>
+     <width>71</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Server Host</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>0</y>
+     <width>58</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Port</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="hostLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>0</y>
+     <width>113</width>
+     <height>27</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="portLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>0</y>
+     <width>113</width>
+     <height>27</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="nameShowLabel">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>260</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Your Name</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="connectButton">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>0</y>
+     <width>87</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Connect</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="talkButton">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>260</y>
+     <width>87</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Talk</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="talkLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>260</y>
+     <width>113</width>
+     <height>27</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTextBrowser" name="textBrowser">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>60</y>
+     <width>311</width>
+     <height>191</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="nameLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>30</y>
+     <width>113</width>
+     <height>27</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="nameLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>30</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>What's your Name?</string>
+   </property>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
