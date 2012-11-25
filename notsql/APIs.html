@@ -1,0 +1,121 @@
+<h1>APIs</h1>
+<h3>Create</h3>
+<ul>
+<li>void createTable</li>
+</ul>
+<p>(</p>
+<pre><code>string                  table_name,
+
+vector&lt;string&gt;          col_names,
+
+// vector 的第一个数据是类型的宏定义，第二个是参数, 如char(10)的10
+
+// 无参数时为0
+
+vector&lt;int, int&gt;        types,
+
+vector&lt;bool&gt;            nulls
+</code></pre>
+<p>) </p>
+<p>throws</p>
+<pre><code>DuplicateNameException,
+
+IllegalNameException,
+
+IllegalTypeException,
+
+OperationException,
+
+PermissionDenyException
+</code></pre>
+<ul>
+<li>void createIndex</li>
+</ul>
+<p>(</p>
+<pre><code>string                  table_name,
+
+bool                    unique,
+
+vector&lt;string&gt;          field_names
+</code></pre>
+<p>)</p>
+<p>throws</p>
+<pre><code>DuplicateNameException,
+
+IllegalNameException
+</code></pre>
+<h3>Drop</h3>
+<h3>Insert</h3>
+<h3>Delete</h3>
+<h3>Where</h3>
+<h1>BufferManager's function</h1>
+<h3>BufferManager is on 'reason-BufferManager' branch</h3>
+<ul>
+<li>NotsqlBufferBlock * getBlock</li>
+</ul>
+<p>(</p>
+<pre><code>string                  table_name,
+
+int                     block_num
+</code></pre>
+<p>)</p>
+<p>throw</p>
+<pre><code>NotsqlBufferBlockFileNotFoundException,
+
+NotsqlBufferBlockWrongBlockToLoad
+</code></pre>
+<ul>
+<li>void addRecord</li>
+</ul>
+<p>(</p>
+<pre><code>string                  table_name,
+
+char *                  record,
+
+int                     size
+</code></pre>
+<p>)</p>
+<p>throw</p>
+<pre><code>NotsqlBufferBlockFileNotFoundException,
+</code></pre>
+<ul>
+<li>void  getRecord</li>
+</ul>
+<p>(</p>
+<pre><code>string                  table_name,
+
+int                     block_num,
+
+int                     index,
+
+char*                   records,
+
+unsigned int *          size
+</code></pre>
+<p>)</p>
+<p>throw</p>
+<pre><code>NotsqlBufferBlockFileNotFoundException,
+
+NotsqlBufferBlockWrongBlockToLoad,
+
+NotsqlBufferBlockWrongRecordToGet
+</code></pre>
+<ul>
+<li>void deleteRecord</li>
+</ul>
+<p>(</p>
+<pre><code>string                  table_name,
+
+int                     block_num,
+
+int                     index
+</code></pre>
+<p>)</p>
+<p>throw</p>
+<pre><code>NotsqlBufferBlockFileNotFoundException,
+
+NotsqlBufferBlockWrongBlockToLoad,
+
+NotsqlBufferBlockWrongRecordToGet
+</code></pre>
+<h2>notice: block_num &gt;= 0 index &gt;= 1</h2>

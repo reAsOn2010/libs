@@ -1,0 +1,281 @@
+#ifndef _NOTSQL_INTERPRETER_H_
+#define _NOTSQL_INTERPRETER_H_
+/*
+ * Max length of a SQL statements
+ */
+#ifndef NOTSQL_MAX_SQL_LENGTH
+ #define NOTSQL_MAX_SQL_LENGTH 1000000
+#endif
+
+
+#ifndef NOTSQL_DEBUG
+ #define NOTSQL_DEBUG 1
+#endif
+
+/** * Minimum size of a select clause's token vector */
+#ifndef NOTSQL_MIN_SELECT_LENGTH
+ #define NOTSQL_MIN_SELECT_LENGTH 3
+#endif 
+
+#ifndef NOTSQL_MIN_CREATE_LENGTH 
+ #define NOTSQL_MIN_CREATE_LENGTH 6
+#endif 
+
+#include <iostream>
+#include <vector>
+#include <sstream>
+#include <iostream>
+#include "NotsqlExceptions.h"
+#include "NotsqlConstants.h"
+#include "NotsqlAPI.h"
+#include "NotsqlTable.h"
+using namespace std;
+
+
+class NotsqlInterpreter{
+public:
+    NotsqlInterpreter(ostream & out=std::cout) : out(out){
+        init_flag = false;
+        parseConf();
+    };
+    ~NotsqlInterpreter(){
+        cout << init_flag << endl;
+        if(init_flag){
+            delete api;
+        }
+    }
+    void reset(){
+        res_table.reset();
+        res_str.clear();
+    }
+
+    string getResStr() const{
+        return res_str;
+    }
+
+    NotsqlTable getResTable() const {
+        return res_table;
+    }
+    void interpret(const string & cmd);
+
+#ifdef NOTSQL_DEBUG
+    void testGetKeywordCode();
+#endif
+private:
+    /**
+     * Main steps
+     */
+    void prepare();
+    void tokenize();
+    void run();
+
+
+
+    /**
+     * Except the specific token type
+     */
+    bool expect(unsigned int index, TK_TYPE type){
+        if(index >= tokens.size() || tokens[index].first != type){
+            return false;
+        }
+        return true;
+    }
+
+    NotsqlTable getTable(){
+        return res_table;
+    }
+    const unsigned short int toUpper(char ch){
+        if(ch >= 'a' && ch <= 'z'){
+            ch -= 32;
+        }
+        return ch;
+    }
+    const unsigned short int toLower(char ch){
+        return NotsqlInterpreter::toLowerTable[(unsigned short int)ch];
+    }
+
+    int strcmp_upper(const char * text, string word, int word_len);
+
+    void init(const string & db_name);
+
+
+
+    /**
+     * Parse one word
+     *
+     * Return the word's type and the string value
+     *
+     * If parse error occurs, roll back the cursor to the previous state,
+     * then throw an exception with the error index.
+     *
+     *
+     * TODO
+     * 如果有可能，最好能做下转义问题
+     */
+    pair<TK_TYPE, string> parseWord();
+
+    /*
+       int getTokenCode();
+       */
+    int getKeywordCode(string word);
+
+    /**
+     * Parse specific character
+     * If failed, return false, and roll back the cursor to the previous state
+     */
+    bool parseChar(char ch);
+
+    void parseConf();
+
+    static bool isBlank(const char ch){
+        return (ch == '\n' || ch == '\t' || ch == '\b' || ch == '\f' || ch == ' ');
+    }
+
+    static bool isAlpha(const char ch){
+        return ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <='Z'));
+    }
+
+    static bool isDigit(const char ch){ 
+        return (ch >= '0' && ch <= '9');
+    }
+
+    static bool isUnderline(const char ch){
+        return ch == '_';
+    }
+
+    static bool isNum(const string & str);
+
+
+    static double toNum(const string & str);
+
+    /*
+     * Main entries of the commands
+     */
+
+    /*
+     * Parse the select clause
+     * Syntax:
+     *
+     * SELECT [DISTINCT] [table.]column [ , [table.]column ]**
+     *      [INTO result_table]
+     *      FROM table, table **
+     *      [ WHERE [table.] column OPERATOR VALUE
+     *      [ AND | OR [table.]column OPERATOR VALUE]** ]
+     */
+    void parseSelect();
+
+    /**
+     * Parse the insert clause
+     * Syntax:
+     *
+     * INSERT INTO table_name [ ( column [ , column ] ** ) ]
+     * VALUES ( value [ , value ] ** )
+     */
+    void parseInsert();
+
+    /*
+     * Delete clause
+     *
+     * Syntax:
+     *
+     * DELETE FROM table_name
+     * WHERE column OPERATOR value
+     * [ AND | OR column OPERATOR value ]**
+     */
+    void parseDelete();
+
+
+    /**
+     * Parse the CREATE clause
+     * Syntax:
+     * 
+     *  CREATE DATABASE db_name
+     *
+     *  CREATE TABLE table_name(
+     *      col_name col_type [not null]
+     *      [, col_name col_type [not null]]**
+     *      [PRIMARY KEY(col_name)]
+     *  )
+     *
+     *  CREATE INDEX index_name ON table_name(field_name)
+     */
+    void parseCreate();
+
+    /**
+     * Parse drop clause
+     *
+     * Syntax:
+     *
+     * DROP DATABASE db_name
+     *
+     * DROP TABLE table_name
+     *
+     * DROP INDEX index_name FROM table_name
+     *
+     */
+    void parseDrop();
+
+    /**
+     * Parse the USE clause
+     *
+     * Syntax:
+     *
+     *  USE db_name
+     *
+     */
+    void parseUse();
+
+    /**
+     * Filters
+     */
+
+    /**
+     * Base name checker
+     */
+    void checkName(const string &name);
+
+
+    //NotsqlAPI * api;
+
+    /**
+     * The current command
+     */
+    string cmd;
+
+    /**
+     * The tokenized data
+     */
+    vector< pair<TK_TYPE, string> > tokens;
+
+
+    /*
+     * record the current index in the command string
+     */
+    int index;
+    /*
+     * Contain all the keywords in 541 bytes
+     * Here I do some optimize work which references the sqlite ^_^
+     */
+
+    /**
+     * The output stream
+     */
+    ostream & out;
+
+    string PREFIX;
+    bool init_flag;
+    NotsqlAPI * api;
+    NotsqlTable res_table;
+    string res_str;
+    static const char zText[544];
+    static const unsigned char aHash[127];
+    static const unsigned char aNext[121];
+    static const unsigned char aLen[122];
+    static const unsigned short int aOffset[122];
+    static const unsigned char aCode[122];
+    static const unsigned char toUpperTable[256];
+    static const unsigned char toLowerTable[256];
+};
+
+#endif
+

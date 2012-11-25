@@ -1,0 +1,77 @@
+CURDIR := $(shell pwd)
+
+OUTPUT = ./build
+BINDIR = .
+
+vpath %.h $(CURDIR)/Interpreter/lib
+vpath %.h $(CURDIR)/utils/lib
+vpath %.h $(CURDIR)/BTree/include
+vpath %.h $(CURDIR)/IndexManager/include
+vpath %.h $(CURDIR)/BufferManager/include
+vpath %.h $(CURDIR)/CatalogManager/lib
+vpath %.h $(CURDIR)/RecordManager/lib
+vpath %.h $(CURDIR)/API/lib
+vpath %.h $(CURDIR)/Notsql/lib
+vpath %.cpp $(CURDIR)/Interpreter/src
+vpath %.cpp $(CURDIR)/utils/src
+vpath %.cpp $(CURDIR)/BTree/src
+vpath %.cpp $(CURDIR)/IndexManager/src
+vpath %.cpp $(CURDIR)/BufferManager/src
+vpath %.cpp $(CURDIR)/CatalogManager/src
+vpath %.cpp $(CURDIR)/RecordManager/src
+vpath %.cpp $(CURDIR)/API/src
+vpath %.cpp $(CURDIR)/Notsql/src
+vpath %.o $(CURDIR)/$(OUTPUT)
+
+INCPATH = -I$(CURDIR)/utils/lib -I$(CURDIR)/Interpreter/lib -I$(CURDIR)/API/lib \
+		  -I$(CURDIR)/IndexManager/include -I$(CURDIR)/BufferManager/include \
+		  -I$(CURDIR)/CatalogManager/lib -I$(CURDIR)/BTree/include \
+		  -I$(CURDIR)/RecordManager/lib -I$(CURDIR)/Notsql/lib -Wall
+
+Notsql: NotsqlInterpreter.o NotsqlExpr.o \
+	NotsqlBufferManager.o NotsqlBTree.o \
+	NotsqlTable.o NotsqlAPI.o \
+	NotsqlCatalogDatabase.o NotsqlCatalogManager.o \
+	NotsqlRecordManager.o NotsqlIndexManager.o \
+	NotsqlCLI.o Notsql.o
+	g++ -o $(BINDIR)/notsql $(OUTPUT)/*.o $(INCPATH)
+
+Notsql.o: Notsql.cpp NotsqlCLI.h 
+	g++ -c -g $(CURDIR)/Notsql/src/Notsql.cpp -o $(OUTPUT)/Notsql.o $(INCPATH)
+
+NotsqlCLI.o : NotsqlCLI.h NotsqlInterpreter.h 
+	g++ -c -g $(CURDIR)/Notsql/src/NotsqlCLI.cpp -o $(OUTPUT)/NotsqlCLI.o $(INCPATH)
+
+NotsqlInterpreter.o : NotsqlInterpreter.h NotsqlConstants.h NotsqlExceptions.h NotsqlExpr.h NotsqlAPI.h
+	g++ -c -g $(CURDIR)/Interpreter/src/NotsqlInterpreter.cpp -o $(OUTPUT)/NotsqlInterpreter.o $(INCPATH)
+
+NotsqlAPI.o : NotsqlAPI.cpp
+	g++ -c -g $(CURDIR)/API/src/NotsqlAPI.cpp -o $(OUTPUT)/NotsqlAPI.o $(INCPATH)
+
+NotsqlExpr.o : NotsqlExpr.cpp NotsqlExpr.h
+	g++ -c -g $(CURDIR)/utils/src/NotsqlExpr.cpp -o $(OUTPUT)/NotsqlExpr.o $(INCPATH)
+
+NotsqlIndexManager.o : NotsqlIndexManager.h NotsqlBTree.h
+	g++ -c -g $(CURDIR)/IndexManager/src/NotsqlIndexManager.cpp -o $(OUTPUT)/NotsqlIndexManager.o $(INCPATH)
+
+NotsqlTable.o : NotsqlTable.h
+	g++ -c -g $(CURDIR)/utils/src/NotsqlTable.cpp -o $(OUTPUT)/NotsqlTable.o $(INCPATH)
+
+NotsqlBTree.o : NotsqlBTree.h
+	g++ -c -g $(CURDIR)/BTree/src/NotsqlBTree.cpp -o $(OUTPUT)/NotsqlBTree.o $(INCPATH)
+
+NotsqlCatalogManager.o : NotsqlCatalogManager.h
+	g++ -c -g $(CURDIR)/CatalogManager/src/NotsqlCatalogManager.cpp -o $(OUTPUT)/NotsqlCatalogManager.o $(INCPATH)
+
+NotsqlCatalogDatabase.o : NotsqlCatalogDatabase.h
+	g++ -c -g $(CURDIR)/CatalogManager/src/NotsqlCatalogDatabase.cpp -o $(OUTPUT)/NotsqlCatalogDatabase.o $(INCPATH)
+
+NotsqlRecordManager.o : NotsqlRecordManager.h NotsqlAPI.h
+	g++ -c -g $(CURDIR)/RecordManager/src/NotsqlRecordManager.cpp -o $(OUTPUT)/NotsqlRecordManager.o $(INCPATH)
+
+NotsqlBufferManager.o : NotsqlBufferManager.h
+	g++ -c -g $(CURDIR)/BufferManager/src/NotsqlBufferManager.cpp -o $(OUTPUT)/NotsqlBufferManager.o $(INCPATH)
+
+clean :
+	rm -vf $(OUTPUT)/*.o
+

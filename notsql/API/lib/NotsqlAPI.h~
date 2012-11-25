@@ -1,0 +1,178 @@
+#ifndef _NOTSQL_API_H_
+#define _NOTSQL_API_H_
+#include <iostream>
+#include <map>
+
+#include "NotsqlExceptions.h"
+#include "NotsqlCatalogManager.h"
+#include "NotsqlConstants.h"
+#include "NotsqlIndexManager.h"
+#include "NotsqlRecordManager.h"
+#include "NotsqlTable.h"
+#include "NotsqlExpr.h"
+
+
+class NotsqlAPI{
+public:
+
+    NotsqlAPI(const string & db_name, const string & PREFIX);
+    virtual ~NotsqlAPI(){
+        delete catalog;
+        delete buffer_manager;
+        delete record_manager;
+        delete index_manager;
+    }
+
+    /**
+     * Select logical expression
+     * 
+     * Check the fields' existence and retuan a single table
+     *
+     * all_fields: 
+     *      if '*' is given
+     * distinct: 
+     *      if 'DISTINCT' is given
+     * fields: 
+     *      specific fields is given, 
+     *      if the format is like TABLE1.FIELD1, there'll be a extra TABLE_NAME
+     *      else TABLE_NAME is empty
+     * tables: 
+     *      specific table names is given
+     * exprs: 
+     *      the expressions
+     * rels:  
+     *      the relations between every two expressions
+     *
+     */
+    NotsqlTable select(
+            bool all_fields,
+            bool distinct,
+            vector< pair<TABLE_NAME, FIELD_NAME> > & fields,
+            vector<TABLE_NAME> & tables,
+            vector<vector<NotsqlExpr> > & exprs
+    );
+
+
+    void createTable(
+            const string & table_name,
+            vector<string> & col_names,
+            vector<TK_TYPE> & types,
+            vector<int> & type_sizes,
+            vector<string> & primary_keys,
+            vector<bool> & not_nulls
+    );
+
+    void createIndex(
+            const string & table_name,
+            const string & index_name,
+            const string & col_name
+    );
+
+    void dropIndex(
+            const string & table_name,
+            const string & index_name);
+
+    void dropTable(const string & table_name);
+
+
+    void insert(
+            const string & table_name,
+            vector<string> & col_names,
+            vector< pair<TK_TYPE, string> > & values
+    );
+
+    NotsqlTable getTableProto(const string & table_name);
+
+
+    void delete_(
+            const string & table_name,
+            vector< vector<NotsqlExpr> > & exprs
+    );
+
+    void getAllFields(
+            vector<pair<string, string> > & field_names,
+            vector<string> & tables
+    );
+    /**
+     * Project logical expression
+     */
+    void project(
+            NotsqlTable & table,
+            vector<string> & field_names
+    );
+
+    /**
+     * The union logical expression
+     */
+
+    void union_(
+           NotsqlTable & table,
+           NotsqlTable & table2
+    );
+
+
+    /**
+     * The set different logical expression
+     */
+    void setDiff(
+            NotsqlTable & table,
+            NotsqlTable & table2
+    );
+
+
+    /**
+     * The Cartesion-product logical expression
+     *
+     * @param table
+     * The source table, also the result table
+     *
+     * @param table2
+     * Another source table
+     *
+     */
+    void cartesianProduct(
+            NotsqlTable & table,
+            NotsqlTable & table2
+    );
+
+    void join(
+            NotsqlTable & table,
+            NotsqlTable & table2
+    );
+
+
+private:
+
+    /**
+     * Check the fields and tables, and fix up the fields vector
+     */
+    void checkAndFixupFields(
+            vector< pair<TABLE_NAME, FIELD_NAME> > & fields,
+            vector<TABLE_NAME> & tables
+    );
+
+    /**
+     * Check the expression and fix up them
+     */
+    void checkAndFixupExprs(
+            vector< vector<NotsqlExpr> > & exprs, 
+            vector<TABLE_NAME> & tables
+    );
+
+    /**
+     * Check the field is in the unique one of the tables or not,
+     * And return the unique table name
+     */
+    string checkFieldInTables(
+            const string & field,
+            vector<TABLE_NAME> & tables
+    );
+
+    string PREFIX;
+
+    NotsqlBufferManager * buffer_manager;
+    NotsqlCatalogManager * catalog;
+    NotsqlRecordManager * record_manager;
+    NotsqlIndexManager * index_manager;
+};
+#endif
