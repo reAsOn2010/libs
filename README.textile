@@ -1,1 +1,13 @@
 h2. Just some small programs
+
+h2. 大学期间的一些程序，不断更新中...
+
+* laysent的大数程序(引用请联系其本人 laysent@gmail.com)
+* C语言进阶
+* 计算机组成
+* 数据结构
+* Linux程序设计(短学期)
+* 逻辑
+* 数据库系统设计(notsql, 引用请附带出处和作者！ DanialBlack & WTYJack & The_reAsOn)
+* 面向对象程序设计
+* usaco(中断更新)
