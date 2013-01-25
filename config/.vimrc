@@ -161,19 +161,41 @@ set cursorline
 hi CursorColumn cterm=NONE ctermbg=236 ctermfg=NONE guibg=purple guibg=NONE
 
 " set tag
-set tags=/home/reason/workspace/tags
+set tags=/home/reason/Documents/git/tags
 
 " for plugin taglist
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
 
+
+" combine Taglist and NERDtree
+let g:NERDTree_title="[NERD Tree]" 
+let g:winManagerWindowLayout='NERDTree|TagList,BufExplorer'
+function! NERDTree_Start()
+    exec 'NERDTree'
+endfunction
+function! NERDTree_IsValid()
+    return 1
+endfunction
+"nmap wm :if IsWinManagerVisible() <BAR> WMToggle<CR> <BAR> else <BAR> WMToggle<CR>:q<CR> endif <CR><CR>
+nmap <F3> :if IsWinManagerVisible() <BAR> WMToggle<CR> <BAR> else <BAR> WMToggle<CR>:q<CR> endif <CR><CR>
+
+
+
+
 " combine Taglist and netrw
-let g:winManagerWindowLayout='FileExplorer|TagList'
-nmap wm :WMToggle<cr>
+" let g:winManagerWindowLayout='FileExplorer|TagList'
+" nmap wm :WMToggle<cr>
 
 " for MiniBufExplorer
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
+
+""""""""""""""""""""""""""""""
+" netrw setting
+""""""""""""""""""""""""""""""
+let g:netrw_winsize = 20
+nmap fe :Sexplore!<cr>
 
 " for new-omni-completion
 set completeopt=longest,menu
@@ -186,17 +208,14 @@ source ~/.vim/scripts/closetag.vim
 " :setlocal spell spelllang=en_us
 
 if has("autocmd")
-   autocmd FileType xml,html,c,cs,java,perl,shell,bash,cpp,python,vim,php,ruby,tex,javascript,make set number
-   autocmd FileType xml,html,c,cs,java,perl,shell,bash,cpp,python,vim,php,ruby,tex,javascript,htmldjango,lua set expandtab
-   autocmd FileType xml,html,c,cs,java,perl,shell,bash,cpp,python,vim,php,ruby,tex,javascript,htmldjango,lua set nowrap
+   autocmd FileType xml,html,c,cs,java,perl,shell,bash,cpp,python,vim,php,ruby,tex,javascript,make,octave,go set number
+   autocmd FileType xml,html,c,cs,java,perl,shell,bash,cpp,python,vim,php,ruby,tex,javascript,htmldjango,lua,octave,go set expandtab
+   autocmd FileType xml,html,c,cs,java,perl,shell,bash,cpp,python,vim,php,ruby,tex,javascript,htmldjango,lua,octave,go set nowrap
    autocmd FileType xml,html vmap <C-o> <ESC>'<i<!--<ESC>o<ESC>'>o-->
    autocmd FileType java,c,cpp,cs vmap <C-o> <ESC>'<o/*<ESC>'>o*/
    autocmd FileType html,text,php,vim,c,java,xml,bash,shell,perl,python setlocal textwidth=100
-   autocmd Filetype html,xml,xsl source $VIMRUNTIME/plugin/closetag.vim
    autocmd BufReadPost *
       \ if line("'\"") > 0 && line("'\"") <= line("$") |
       \   exe "normal g`\"" |
       \ endif
 endif " has("autocmd")
-
-
