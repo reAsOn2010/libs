@@ -121,8 +121,8 @@ set nobackup
 highlight OverLength ctermbg=red ctermfg=white guibg=red guifg=white
 match OverLength '\%101v.*'
 
-" 光标移动到buffer的顶部和底部时保持3行距离
-set scrolloff=3
+" 光标移动到buffer的顶部和底部时保持2行距离
+set scrolloff=2
 
 " 在被分割的窗口间显示空白，便于阅读
 set fillchars=vert:\ ,stl:\ ,stlnc:\
@@ -156,66 +156,34 @@ set t_Co=256
 
 " highlight cursor
 set cursorcolumn
-hi CursorLine cterm=NONE ctermbg=236 ctermfg=NONE guibg=purple guibg=NONE
+hi CursorLine cterm=NONE ctermbg=233 ctermfg=NONE guibg=purple guibg=NONE
 set cursorline
 hi CursorColumn cterm=NONE ctermbg=236 ctermfg=NONE guibg=purple guibg=NONE
-
-" set tag
-set tags=/home/reason/Documents/git/tags
-
-" for plugin taglist
-let Tlist_Show_One_File=1
-let Tlist_Exit_OnlyWindow=1
-
-
-" combine Taglist and NERDtree
-let g:NERDTree_title="[NERD Tree]" 
-let g:winManagerWindowLayout='NERDTree|TagList,BufExplorer'
-function! NERDTree_Start()
-    exec 'NERDTree'
-endfunction
-function! NERDTree_IsValid()
-    return 1
-endfunction
-"nmap wm :if IsWinManagerVisible() <BAR> WMToggle<CR> <BAR> else <BAR> WMToggle<CR>:q<CR> endif <CR><CR>
-nmap <F3> :if IsWinManagerVisible() <BAR> WMToggle<CR> <BAR> else <BAR> WMToggle<CR>:q<CR> endif <CR><CR>
-
-
-
-
-" combine Taglist and netrw
-" let g:winManagerWindowLayout='FileExplorer|TagList'
-" nmap wm :WMToggle<cr>
-
-" for MiniBufExplorer
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-
-""""""""""""""""""""""""""""""
-" netrw setting
-""""""""""""""""""""""""""""""
-let g:netrw_winsize = 20
-nmap fe :Sexplore!<cr>
-
-" for new-omni-completion
-set completeopt=longest,menu
 
 " for closetag
 let g:closetag_html_style=1
 source ~/.vim/scripts/closetag.vim
 
-" check spelling
-" :setlocal spell spelllang=en_us
+" for miniBufexplorer
+let g:miniBufExplMapWindowNavVim = 1 
+let g:miniBufExplMapWindowNavArrows = 1 
+let g:miniBufExplMapCTabSwitchBufs = 1 
+let g:miniBufExplModSelTarget = 1
 
 if has("autocmd")
-   autocmd FileType xml,html,c,cs,java,perl,shell,bash,cpp,python,vim,php,ruby,tex,javascript,make,octave,go set number
-   autocmd FileType xml,html,c,cs,java,perl,shell,bash,cpp,python,vim,php,ruby,tex,javascript,htmldjango,lua,octave,go set expandtab
-   autocmd FileType xml,html,c,cs,java,perl,shell,bash,cpp,python,vim,php,ruby,tex,javascript,htmldjango,lua,octave,go set nowrap
+   autocmd FileType xml,html,c,cs,java,perl,shell,bash,cpp,python,vim,php,ruby,tex,javascript,make,octave,go,haskell set number
+   autocmd FileType xml,html,c,cs,java,perl,shell,bash,cpp,python,vim,php,ruby,tex,javascript,htmldjango,lua,octave,go,haskell set expandtab
+   autocmd FileType xml,html,c,cs,java,perl,shell,bash,cpp,python,vim,php,ruby,tex,javascript,htmldjango,lua,octave,go,haskell set nowrap
    autocmd FileType xml,html vmap <C-o> <ESC>'<i<!--<ESC>o<ESC>'>o-->
    autocmd FileType java,c,cpp,cs vmap <C-o> <ESC>'<o/*<ESC>'>o*/
-   autocmd FileType html,text,php,vim,c,java,xml,bash,shell,perl,python setlocal textwidth=100
+   autocmd FileType html,text,php,vim,c,java,xml,bash,shell,perl,python,go,haskell setlocal textwidth=100
    autocmd BufReadPost *
       \ if line("'\"") > 0 && line("'\"") <= line("$") |
       \   exe "normal g`\"" |
       \ endif
+   autocmd BufNewFile *.php 0 r ~/.vim/template/tpl.php
+   autocmd BufNewFile *.c,*.cpp,*.h 0 r ~/.vim/template/tpl.c
+   autocmd BufNewFile *.hs 0 r ~/.vim/template/tpl.hs
+   autocmd BufNewFile *.html 0 r ~/.vim/template/tpl.html
+   autocmd BufNewFile *.py 0 r ~/.vim/template/tpl.py
 endif " has("autocmd")

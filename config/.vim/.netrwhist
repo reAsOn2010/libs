@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/reason/Dropbox/CodeForFun/yhlFrame'
+let g:netrw_dirhist_2='/etc/apache2/sites-available'
+let g:netrw_dirhist_3='/home/reason/Dropbox/CodeForFun/yhlFrame/app/models'
+let g:netrw_dirhist_4='/home/reason/Dropbox/CodeForFun/yhlFrame/app/views'
+let g:netrw_dirhist_5='/home/reason/Dropbox/CodeForFun/yhlFrame/app/models'
+let g:netrw_dirhist_6='/home/reason/Softwares/t-engine4-linux64-1.0.0/backup'
+let g:netrw_dirhist_7='/home/reason/Dropbox/CodeForFun/yhlFrame/core/main'
