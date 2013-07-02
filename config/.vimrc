@@ -161,8 +161,8 @@ set cursorline
 hi CursorColumn cterm=NONE ctermbg=236 ctermfg=NONE guibg=purple guibg=NONE
 
 " for closetag
-let g:closetag_html_style=1
-source ~/.vim/scripts/closetag.vim
+" let g:closetag_html_style=1
+" source ~/.vim/scripts/closetag.vim
 
 " for miniBufexplorer
 let g:miniBufExplMapWindowNavVim = 1 
@@ -170,10 +170,11 @@ let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1 
 let g:miniBufExplModSelTarget = 1
 
+set nowrap
+set number
+set expandtab
+
 if has("autocmd")
-   autocmd FileType xml,html,c,cs,java,perl,shell,bash,cpp,python,vim,php,ruby,tex,javascript,make,octave,go,haskell set number
-   autocmd FileType xml,html,c,cs,java,perl,shell,bash,cpp,python,vim,php,ruby,tex,javascript,htmldjango,lua,octave,go,haskell set expandtab
-   autocmd FileType xml,html,c,cs,java,perl,shell,bash,cpp,python,vim,php,ruby,tex,javascript,htmldjango,lua,octave,go,haskell set nowrap
    autocmd FileType xml,html vmap <C-o> <ESC>'<i<!--<ESC>o<ESC>'>o-->
    autocmd FileType java,c,cpp,cs vmap <C-o> <ESC>'<o/*<ESC>'>o*/
    autocmd FileType html,text,php,vim,c,java,xml,bash,shell,perl,python,go,haskell setlocal textwidth=100
@@ -181,9 +182,4 @@ if has("autocmd")
       \ if line("'\"") > 0 && line("'\"") <= line("$") |
       \   exe "normal g`\"" |
       \ endif
-   autocmd BufNewFile *.php 0 r ~/.vim/template/tpl.php
-   autocmd BufNewFile *.c,*.cpp,*.h 0 r ~/.vim/template/tpl.c
-   autocmd BufNewFile *.hs 0 r ~/.vim/template/tpl.hs
-   autocmd BufNewFile *.html 0 r ~/.vim/template/tpl.html
-   autocmd BufNewFile *.py 0 r ~/.vim/template/tpl.py
 endif " has("autocmd")
